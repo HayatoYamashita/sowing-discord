@@ -45,8 +45,9 @@ the `#paper` section are placeholders. `paper.pdf` is listed in `.gitignore` so 
 - **Update vendor status**: edit the timeline / status list in `#ethics` (Disclosure timeline) and update "Last updated".
 - **Edit the FAQ**: each question is a `<details>` block in `#faq`. Keep answers to 1–3 sentences.
 - **Add author homepage**: in `#authors`, wrap the name: `<p class="author-name"><a href="https://...">Name</a></p>`.
-- **Change the public URL**: update `CNAME`, and in `<head>` the `canonical` link, `og:url`, `og:image` and `twitter:image`
-  (all absolute `https://sowing-discord.com/...` URLs).
+- **Change the public URL** (e.g., when moving to a custom domain): in `<head>` update the `canonical` link, `og:url`,
+  `og:image` and `twitter:image` (all absolute URLs). For a custom domain, set up DNS **first**, then add a `CNAME`
+  file and the domain in Settings → Pages — otherwise the github.io URL redirects to a domain that does not work.
 - **Replace the video**: overwrite `assets/video/PoC.mp4` (keep < 50 MB) and regenerate the poster:
   `ffmpeg -ss 2 -i assets/video/PoC.mp4 -frames:v 1 -q:v 3 assets/video/PoC-poster.jpg`
 
@@ -56,5 +57,5 @@ the `#paper` section are placeholders. `paper.pdf` is listed in `.gitignore` so 
 ## Deployment
 
 GitHub Pages (repository `HayatoYamashita/sowing-discord`): Settings → Pages → Deploy from a branch → `main` / `(root)`.
-Custom domain: `sowing-discord.com` (the `CNAME` file in the root). Pushing to `main` redeploys the site.
+Public URL: https://hayatoyamashita.github.io/sowing-discord/ (no custom domain yet). Pushing to `main` redeploys the site.
 The publication timing is decided by the authors.
