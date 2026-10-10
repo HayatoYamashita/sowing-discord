@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-labelledby="p1-title p1-desc" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title id="p1-title">Phase 1: split the keys</title>
+  <desc id="p1-desc">The server sends a key update to every member. A network adversary delays the key update on its way to the target, so the target keeps the old key while the other members switch to the new key.</desc>
+  <!-- Background = card color (bg-elev), so the SVG is also readable when opened on its own. -->
+  <rect id="bg" width="640" height="280" fill="#12161e"/>
+  <!-- Redrawn from the authors' phase1.pdf (paper Fig. 3) for the dark site theme. -->
+  <defs>
+    <marker id="p1-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#9aa4b5"/>
+    </marker>
+    <marker id="p1-arrow-coral" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#F0705C"/>
+    </marker>
+    <symbol id="p1-person" viewBox="0 0 40 44">
+      <circle cx="20" cy="12" r="10"/>
+      <path d="M2 44C2 31 10 25 20 25S38 31 38 44Z"/>
+    </symbol>
+    <symbol id="p1-key" viewBox="0 0 24 24">
+      <circle cx="7" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.6"/>
+      <path d="M11.5 12H22M18 12v3.5M21 12v3" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+
+  <!-- ===== server ===== -->
+  <g>
+    <rect x="28" y="98" width="78" height="86" rx="12" fill="#1a2030" stroke="#34405a" stroke-width="2"/>
+    <rect x="42" y="114" width="50" height="12" rx="3" fill="#2a3346"/>
+    <rect x="42" y="134" width="50" height="12" rx="3" fill="#2a3346"/>
+    <rect x="42" y="154" width="50" height="12" rx="3" fill="#2a3346"/>
+    <circle cx="84" cy="120" r="2.5" fill="#4C8DF6"/>
+    <circle cx="84" cy="140" r="2.5" fill="#4C8DF6"/>
+    <circle cx="84" cy="160" r="2.5" fill="#4C8DF6"/>
+    <text x="67" y="210" text-anchor="middle" font-size="17" font-weight="600" fill="#e8ecf3">Server</text>
+  </g>
+
+  <!-- ===== key update to the target: delayed ===== -->
+  <path d="M112 122 L322 70" stroke="#F0705C" stroke-width="2.5" stroke-dasharray="7 6" fill="none" marker-end="url(#p1-arrow-coral)"/>
+  <!-- network adversary + hourglass on the path -->
+  <g transform="translate(212 97)">
+    <circle r="17" fill="#0b0d12" stroke="#F0705C" stroke-width="2.5"/>
+    <path d="M-7 -9H7M-7 9H7M-6 -9C-6 -2 6 2 6 9M6 -9C6 -2 -6 2 -6 9" fill="none" stroke="#F0705C" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <!-- adversary drawn inline (not via <use>) so the coral fill renders in every browser -->
+  <g transform="translate(148 14) scale(.65)" fill="#F0705C">
+    <circle cx="20" cy="12" r="10"/>
+    <path d="M2 44C2 31 10 25 20 25S38 31 38 44Z"/>
+  </g>
+  <text x="180" y="27" font-size="14" font-weight="600" fill="#F0705C">Network adversary</text>
+  <text x="180" y="45" font-size="13" fill="#9aa4b5">delays the target's TCP</text>
+
+  <!-- ===== key update to the others: delivered ===== -->
+  <path d="M112 160 L322 210" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p1-arrow)"/>
+  <text x="196" y="214" font-size="14" fill="#9aa4b5" transform="rotate(13 196 214)">key update</text>
+
+  <!-- ===== target ===== -->
+  <use href="#p1-person" x="334" y="44" width="40" height="44" fill="#e8ecf3"/>
+  <text x="354" y="110" text-anchor="middle" font-size="17" font-weight="600" fill="#e8ecf3">Target</text>
+  <path d="M390 70 H444" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p1-arrow)"/>
+  <g>
+    <rect x="452" y="48" width="160" height="44" rx="22" fill="rgba(240,112,92,.12)" stroke="#F0705C" stroke-width="2"/>
+    <g color="#F0705C"><use href="#p1-key" x="468" y="58" width="24" height="24"/></g>
+    <text x="500" y="76" font-size="17" font-weight="700" fill="#F0705C">Old key</text>
+  </g>
+  <text x="532" y="116" text-anchor="middle" font-size="13" fill="#9aa4b5">update not processed</text>
+
+  <!-- ===== others ===== -->
+  <use href="#p1-person" x="334" y="186" width="40" height="44" fill="#e8ecf3"/>
+  <text x="354" y="252" text-anchor="middle" font-size="17" font-weight="600" fill="#e8ecf3">Others</text>
+  <path d="M390 210 H444" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p1-arrow)"/>
+  <g>
+    <rect x="452" y="188" width="160" height="44" rx="22" fill="rgba(20,168,154,.12)" stroke="#14A89A" stroke-width="2"/>
+    <g color="#14A89A"><use href="#p1-key" x="468" y="198" width="24" height="24"/></g>
+    <text x="500" y="216" font-size="17" font-weight="700" fill="#14A89A">New key</text>
+  </g>
+  <text x="532" y="256" text-anchor="middle" font-size="13" fill="#9aa4b5">update processed</text>
+</svg>

@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sowing Discord: Exploiting the Lack of Key Commitment in E2EE Group RTC</title>
+  <meta name="description" content="One ciphertext, two views: a malicious participant in an end-to-end encrypted Discord group call can make different participants play different, cryptographically authenticated media.">
+  <meta name="theme-color" content="#0b0d12">
+
+  <!-- Open Graph / Twitter Card.
+       TODO: when the URL is decided, add <meta property="og:url"> and make og:image an absolute URL
+       (e.g. https://example.github.io/sowing-discord/assets/img/og-image.png); some services ignore relative images. -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sowing Discord">
+  <meta property="og:description" content="One ciphertext, Two Views. Exploiting the lack of key commitment in E2EE group calls (Discord DAVE).">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Sowing Discord logo with the tagline: One ciphertext, Two Views.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sowing Discord">
+  <meta name="twitter:description" content="One ciphertext, Two Views. Exploiting the lack of key commitment in E2EE group calls (Discord DAVE).">
+  <meta name="twitter:image" content="assets/img/og-image.png">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===== SECTION: header ===== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Sowing Discord — back to top">
+        <img src="assets/img/logo.svg" width="32" height="32" alt="">
+        <span>Sowing Discord</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <nav id="site-nav" class="site-nav" aria-label="Sections">
+        <ul>
+          <li><a href="#video">Video</a></li>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#ethics">Ethics</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#authors">Authors</a></li>
+          <li><a href="#paper">Paper</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== SECTION: hero ===== -->
+    <section id="top" class="hero">
+      <div class="container hero-inner">
+        <img class="hero-logo" src="assets/img/logo.svg" width="112" height="112"
+             alt="Sowing Discord logo: one keyhole seed growing two differently coloured sprouts">
+        <h1 class="hero-title">Sowing Discord</h1>
+        <p class="hero-subtitle">Exploiting the Lack of Key Commitment in E2EE Group RTC</p>
+        <p class="hero-tagline">
+          <span class="c-teal">One ciphertext,</span> <span class="c-coral">Two Views.</span>
+        </p>
+        <p class="hero-lead">
+          In an end-to-end encrypted Discord group call, a malicious participant can send a single
+          encrypted media stream that one participant plays as one video and everyone else plays as
+          another&nbsp;— and every client accepts it as cryptographically authenticated.
+        </p>
+
+        <!-- Buttons. Paper / Artifact / BibTeX are placeholders until the S&P publication:
+             replace the <span class="btn is-disabled"> with <a class="btn" href="..."> when ready. -->
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#video">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            Watch the demo
+          </a>
+          <!-- TODO: paper link (paper.pdf) after the S&P publication -->
+          <span class="btn is-disabled" aria-disabled="true">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 2h8l6 6v14H6zM13 3.5V9h5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            Paper <small>coming soon</small>
+          </span>
+          <!-- TODO: artifact link (https://doi.org/10.5281/zenodo.22764842) — confirm when it may be shown -->
+          <span class="btn is-disabled" aria-disabled="true">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            PoC &amp; Artifact <small>coming soon</small>
+          </span>
+          <a class="btn" href="#paper">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 7h4v4H8c0 2 1 3 3 3v3c-4 0-6-2-6-6V7zm9 0h4v4h-3c0 2 1 3 3 3v3c-4 0-6-2-6-6V7z"/></svg>
+            BibTeX
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: video ===== -->
+    <section id="video" class="video-section" aria-labelledby="video-title">
+      <div class="container">
+        <h2 id="video-title" class="visually-hidden">Demo video</h2>
+        <figure class="video-frame">
+          <!-- To replace the video: overwrite assets/video/PoC.mp4 and regenerate PoC-poster.jpg (see README). -->
+          <video controls preload="metadata" playsinline
+                 poster="assets/video/PoC-poster.jpg"
+                 width="1920" height="1080"
+                 aria-describedby="video-caption">
+            <source src="assets/video/PoC.mp4" type="video/mp4">
+            Your browser cannot play this video.
+            <a href="assets/video/PoC.mp4">Download the demo video (MP4)</a>.
+          </video>
+          <!-- Video = H.265 attack on a DAVE-format WebRTC media pipeline (paper Sec. 4.2.2), confirmed by the authors. -->
+          <figcaption id="video-caption">
+            <strong>Proof of concept</strong> of the H.265 video attack on a DAVE-format WebRTC media pipeline.
+            The adversary (left) sends a single stream of ciphertext. Alice holds key <i>K<sub>A</sub></i>,
+            Bob holds key <i>K<sub>B</sub></i>. Both decrypt the <em>very same</em> ciphertext, yet Alice
+            watches one video and Bob a completely different one.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: discord ===== -->
+    <!-- The user number is NOT from the paper (not displayed with a source, by author decision).
+         For the record: Engadget, 2025-04-23, "more than 200 million monthly active users worldwide,
+         according to the company". -->
+    <section id="discord" class="section">
+      <div class="container">
+        <h2>What is Discord?</h2>
+        <p class="lead prose">
+          Discord is one of the most widely used platforms for voice, video and text communication, with
+          <strong>more than 200 million monthly active users</strong>. Since 2024, its <strong>DAVE</strong>
+          protocol end-to-end encrypts audio and video in calls, so that only the participants hold the
+          keys&nbsp;— the servers just forward encrypted media. Sowing Discord targets exactly these calls.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: news ===== -->
+    <!-- Not shown yet. To add news (conference page, DOI, talk date), insert e.g.:
+    <section id="news" class="section">
+      <div class="container">
+        <h2>News</h2>
+        <ul class="list">
+          <li><time datetime="YYYY-MM-DD">YYYY-MM-DD</time> — ...</li>
+        </ul>
+      </div>
+    </section>
+    -->
+
+    <!-- ===== SECTION: overview ===== -->
+    <!-- Sources: Abstract, Sec. 1, Sec. 3, Sec. 4.1-4.2. -->
+    <section id="overview" class="section">
+      <div class="container">
+        <h2>Overview</h2>
+        <p class="lead prose">
+          AES-GCM, the encryption used by Discord's end-to-end encrypted calls (DAVE), lacks
+          <strong>key commitment</strong>: one ciphertext can be valid under two different keys.
+          This was considered hard to exploit in live calls. We show that by combining a
+          <strong>network adversary</strong> with a <strong>malicious participant</strong>, <em>one</em>
+          ciphertext can be played as <em>different</em> audio or video by different participants&nbsp;— and
+          both pass authentication.
+        </p>
+
+        <ol class="phases">
+          <li class="phase">
+            <div class="phase-text">
+              <p class="phase-label">Phase 1</p>
+              <h3>Split the keys</h3>
+              <p>
+                When someone joins or leaves the call, the key is updated.
+                At that moment, a <strong>network adversary</strong> briefly delays
+                the target's inbound TCP traffic, so the target stays on the <span class="c-coral">old key</span>
+                while everyone else moves to the <span class="c-teal">new key</span>. Media keeps flowing, and the call does not drop.
+              </p>
+            </div>
+            <figure class="phase-fig">
+              <a href="assets/img/phase1.svg?v=2" class="phase-fig-link" aria-label="Open the Phase 1 diagram in full size"><img src="assets/img/phase1.svg?v=2" width="640" height="280"
+                   alt="Phase 1 diagram: the server sends a key update to every member. A network adversary delays it on its way to the target, so the target keeps the old key while the others switch to the new key."></a>
+            </figure>
+          </li>
+          <li class="phase">
+            <div class="phase-text">
+              <p class="phase-label">Phase 2</p>
+              <h3>Send one ambiguous ciphertext</h3>
+              <p>
+                The <strong>malicious participant</strong> sends one ciphertext that decrypts under <em>both</em> keys, hiding the
+                differences in parts the codec ignores. With H.265, it decodes into
+                <strong>two different, clean videos</strong>. For short clips, generating it takes under a second.
+              </p>
+            </div>
+            <figure class="phase-fig">
+              <a href="assets/img/phase2.svg?v=3" class="phase-fig-link" aria-label="Open the Phase 2 diagram in full size"><img src="assets/img/phase2.svg?v=3" width="640" height="280"
+                   alt="Phase 2 diagram: the malicious participant sends one ciphertext, which the server forwards to everyone. The target decrypts it with the old key and plays Video A; the others decrypt it with the new key and play Video B. Both pass authentication."></a>
+            </figure>
+          </li>
+        </ol>
+
+      </div>
+    </section>
+
+    <!-- ===== SECTION: impact ===== -->
+    <!-- Sources: Table 1, Sec. 3.1, Sec. 4.3, Sec. 5. -->
+    <section id="impact" class="section">
+      <div class="container">
+        <h2>Impact</h2>
+
+        <div class="cards-2">
+          <div class="card">
+            <h3>What the attacker can do</h3>
+            <ul class="list">
+              <li>Show one decision-maker a slide reading <span class="c-coral">“Buy”</span> while everyone else sees <span class="c-teal">“Sell”</span>.</li>
+              <li>Make only the target hear a short phrase such as “approve it”, while others hear brief noise.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What the attacker needs</h3>
+            <ul class="list">
+              <li>To be a participant in the call.</li>
+              <li>To delay the target's network traffic (e.g., on the same Wi-Fi).</li>
+            </ul>
+            <p class="card-note">No server compromise, TLS decryption, or message tampering is required.</p>
+          </div>
+        </div>
+
+        <h3 class="subhead">Affected applications</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption class="visually-hidden">Applicability of the attack (paper Table 1)</caption>
+            <thead>
+              <tr>
+                <th scope="col">Application</th>
+                <th scope="col">Audio attack</th>
+                <th scope="col">Video attack</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Discord (DAVE)</th>
+                <td><span class="tag tag-single">✓ single</span></td>
+                <td><span class="tag tag-dual">✓ dual</span></td>
+              </tr>
+              <tr>
+                <th scope="row">Linphone</th>
+                <td><span class="tag tag-single">✓ single</span></td>
+                <td><span class="tag tag-single">✓ single</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="fine">
+          <strong>single</strong>: the target plays attacker-chosen media, others get noise or nothing.
+          <strong>dual</strong>: the target and the others play two different attacker-chosen streams.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: ethics ===== -->
+    <!-- Sources: Appendix E.1 (experiments) and E.2 (disclosure). Update the status and "Last updated"
+         when vendors change their status. Never write "fixed" unless the vendor has confirmed it. -->
+    <section id="ethics" class="section">
+      <div class="container">
+        <h2>Ethical Considerations</h2>
+        <ul class="list prose-list">
+          <li>We did <strong>not</strong> attack any production service or real user. All experiments ran in
+            local, controlled environments using our own accounts and devices.</li>
+          <li>Before submitting the paper, we reported our findings, proof-of-concept implementations and
+            proposed countermeasures to the affected vendors, giving them the opportunity to develop mitigations.</li>
+        </ul>
+
+        <h3 id="disclosure" class="subhead">Disclosure timeline</h3>
+        <ol class="timeline timeline-tight">
+          <li>
+            <time datetime="2025-11-21">Nov 21, 2025</time>
+            <p>Reported the audio (Opus) attack to <strong>Discord</strong>.</p>
+          </li>
+          <li>
+            <time datetime="2026-01-23">Jan 23, 2026</time>
+            <p>Reported the audio attack to <strong>Linphone</strong>.</p>
+          </li>
+          <li>
+            <time datetime="2026-05-18">May 18, 2026</time>
+            <p>Reported the video (H.265) attack to <strong>Discord</strong>.</p>
+          </li>
+          <li>
+            <time datetime="2026-05-26">May 26, 2026</time>
+            <p>Reported the video attack to <strong>Linphone</strong>.</p>
+          </li>
+          <li>
+            <time datetime="2026-06-13">Jun 13, 2026</time>
+            <p><strong>Discord</strong> accepted the report as a valid vulnerability, awarded a bug bounty,
+              and stated that they intend to study mitigations.</p>
+          </li>
+        </ol>
+
+        <dl class="status">
+          <div><dt>Discord</dt><dd>Accepted as a valid vulnerability; studying mitigations.</dd></div>
+          <div><dt>Linphone</dt><dd>Confirmed our analysis; plans to add a verified key identifier (e.g., key ID and epoch) to SRTP's Master Key Identifier.</dd></div>
+        </dl>
+        <!-- TODO: update this date whenever the vendor status above is re-checked. -->
+        <p class="fine">Last updated: <time datetime="2026-10-09">2026-10-09</time></p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: faq ===== -->
+    <!-- Sources: Sec. 3.1, Sec. 6, Appendix E.2-E.3. "Agreed on publication" is from the authors
+         (not in the paper). Never write "fixed" unless the vendor has confirmed it. -->
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details>
+            <summary>What does this mean for users?</summary>
+            <p>In an end-to-end encrypted Discord call, another participant may be able to make you see or hear
+              something different from what everyone else sees or hears. Your app gives no warning, so
+              neither you nor the others can tell that the views differ.</p>
+          </details>
+          <details>
+            <summary>Who can carry out the attack?</summary>
+            <p>Only someone who is already a participant in your call <em>and</em> can briefly delay your
+              network traffic (e.g., on the same Wi-Fi). Outsiders cannot mount it, and it needs no server
+              compromise or TLS decryption.</p>
+          </details>
+          <details>
+            <summary>Did you report the vulnerability?</summary>
+            <p>Yes. Before submitting the paper, we reported our findings, proof-of-concept implementations and
+              proposed countermeasures to the affected vendors. Discord accepted the report as a valid
+              vulnerability and awarded a bug bounty. See the <a href="#disclosure">disclosure timeline</a>.</p>
+          </details>
+          <details>
+            <summary>Did the vendors agree to this publication?</summary>
+            <p>Yes. We coordinated the disclosure with the affected vendors and agreed with them on making this
+              research public.</p>
+          </details>
+          <details>
+            <summary>Did you attack real users?</summary>
+            <p>No. All experiments ran in local, controlled environments using our own accounts and devices.</p>
+          </details>
+          <details>
+            <summary>How can the attack be prevented?</summary>
+            <p>Apps should bind the key ID to each frame by authenticating it, as SFrame (RFC&nbsp;9605) does, and in
+              the long term use an encryption scheme with key commitment. Either change makes a ciphertext valid
+              under only one key.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: authors ===== -->
+    <!-- To add a homepage: wrap the name in <a href="..."> (see README). -->
+    <section id="authors" class="section">
+      <div class="container">
+        <h2>Authors</h2>
+        <ul class="authors">
+          <li class="author">
+            <!-- TODO: homepage link -->
+            <p class="author-name">Hayato Yamashita</p>
+            <p class="author-aff">The University of Osaka</p>
+          </li>
+          <li class="author">
+            <!-- TODO: homepage link -->
+            <p class="author-name">Hayato Kimura</p>
+            <p class="author-aff">NICT / The University of Osaka</p>
+          </li>
+          <li class="author">
+            <!-- TODO: homepage link -->
+            <p class="author-name">Atsushi Tanaka</p>
+            <p class="author-aff">The University of Osaka</p>
+          </li>
+          <li class="author">
+            <!-- TODO: homepage link -->
+            <p class="author-name">Takanori Isobe</p>
+            <p class="author-aff">The University of Osaka</p>
+          </li>
+        </ul>
+        <p class="fine">Contact: <a href="mailto:hayato.yamashita@ist.osaka-u.ac.jp">hayato.yamashita@ist.osaka-u.ac.jp</a></p>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: paper ===== -->
+    <!-- Paper info + BibTeX. Like other attack sites, the venue is mentioned only here ("To appear in"). -->
+    <section id="paper" class="section">
+      <div class="container">
+        <h2>Paper</h2>
+        <div class="paper-card">
+          <p class="paper-title">Sowing Discord: Exploiting the Lack of Key Commitment in E2EE Group RTC</p>
+          <p class="paper-authors">Hayato Yamashita, Hayato Kimura, Atsushi Tanaka, Takanori Isobe</p>
+          <p class="paper-venue"><em>To appear in: 2027 IEEE Symposium on Security and Privacy (S&amp;P 2027).</em></p>
+          <!-- TODO: enable the PDF link and add the BibTeX (<pre> + copy button) after the S&P publication. -->
+          <p class="paper-pending">The paper PDF and BibTeX will be available here after publication.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== SECTION: footer ===== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-meta">
+        <img src="assets/img/logo.svg" width="20" height="20" alt="">
+        <span>Sowing Discord</span>
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

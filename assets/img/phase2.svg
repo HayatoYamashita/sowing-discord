@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-labelledby="p2-title p2-desc" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif">
+  <title id="p2-title">Phase 2: send one ambiguous ciphertext</title>
+  <desc id="p2-desc">The malicious participant sends one ciphertext. The server forwards it to everyone. The target decrypts it with the old key and plays Video A; the others decrypt it with the new key and play Video B. Both pass authentication.</desc>
+  <!-- Background = card color (bg-elev), so the SVG is also readable when opened on its own. -->
+  <rect id="bg" width="640" height="280" fill="#12161e"/>
+  <!-- Redrawn from the authors' phase2.pdf (paper Fig. 10) for the dark site theme. -->
+  <defs>
+    <marker id="p2-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#9aa4b5"/>
+    </marker>
+    <symbol id="p2-person" viewBox="0 0 40 44">
+      <circle cx="20" cy="12" r="10"/>
+      <path d="M2 44C2 31 10 25 20 25S38 31 38 44Z"/>
+    </symbol>
+    <symbol id="p2-key" viewBox="0 0 24 24">
+      <circle cx="7" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.6"/>
+      <path d="M11.5 12H22M18 12v3.5M21 12v3" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="p2-check" viewBox="0 0 20 20">
+      <circle cx="10" cy="10" r="10" fill="#1f9d55"/>
+      <path d="M5.5 10.5L8.8 13.6L14.6 6.8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+
+  <!-- ===== malicious participant ===== -->
+  <!-- attacker drawn inline (not via <use>) so the coral fill renders in every browser -->
+  <g transform="translate(26 112)" fill="#F0705C">
+    <circle cx="20" cy="12" r="10"/>
+    <path d="M2 44C2 31 10 25 20 25S38 31 38 44Z"/>
+  </g>
+  <text x="46" y="178" text-anchor="middle" font-size="15" font-weight="600" fill="#F0705C">Malicious</text>
+  <text x="46" y="196" text-anchor="middle" font-size="15" font-weight="600" fill="#F0705C">participant</text>
+
+  <!-- one ciphertext to the server -->
+  <path d="M74 134 H152" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <text x="112" y="160" text-anchor="middle" font-size="13" fill="#9aa4b5">one ciphertext</text>
+
+  <!-- ===== server ===== -->
+  <g>
+    <rect x="160" y="96" width="70" height="78" rx="12" fill="#1a2030" stroke="#34405a" stroke-width="2"/>
+    <rect x="172" y="110" width="46" height="11" rx="3" fill="#2a3346"/>
+    <rect x="172" y="129" width="46" height="11" rx="3" fill="#2a3346"/>
+    <rect x="172" y="148" width="46" height="11" rx="3" fill="#2a3346"/>
+    <circle cx="211" cy="115.5" r="2.3" fill="#4C8DF6"/>
+    <circle cx="211" cy="134.5" r="2.3" fill="#4C8DF6"/>
+    <circle cx="211" cy="153.5" r="2.3" fill="#4C8DF6"/>
+    <text x="195" y="198" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Server</text>
+  </g>
+
+  <!-- same ciphertext to both receivers -->
+  <path d="M236 118 L318 72" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <path d="M236 152 L318 206" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+
+  <!-- ===== target (old key) ===== -->
+  <use href="#p2-person" x="330" y="40" width="36" height="40" fill="#e8ecf3"/>
+  <text x="348" y="100" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Target</text>
+  <g color="#F0705C"><use href="#p2-key" x="320" y="106" width="20" height="20"/></g>
+  <text x="344" y="121" font-size="13" font-weight="600" fill="#F0705C">old key</text>
+  <path d="M378 62 H452" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <rect x="460" y="22" width="150" height="84" rx="10" fill="#0b0d12" stroke="#F0705C" stroke-width="2.5"/>
+  <text x="535" y="72" text-anchor="middle" font-size="22" font-weight="800" fill="#F0705C">Video A</text>
+  <use href="#p2-check" x="598" y="12" width="22" height="22"/>
+
+  <!-- ===== others (new key) ===== -->
+  <use href="#p2-person" x="330" y="180" width="36" height="40" fill="#e8ecf3"/>
+  <text x="348" y="240" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Others</text>
+  <g color="#14A89A"><use href="#p2-key" x="318" y="246" width="20" height="20"/></g>
+  <text x="342" y="261" font-size="13" font-weight="600" fill="#14A89A">new key</text>
+  <path d="M378 202 H452" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <rect x="460" y="162" width="150" height="84" rx="10" fill="#0b0d12" stroke="#14A89A" stroke-width="2.5"/>
+  <text x="535" y="212" text-anchor="middle" font-size="22" font-weight="800" fill="#14A89A">Video B</text>
+  <use href="#p2-check" x="598" y="152" width="22" height="22"/>
+
+  <text x="535" y="270" text-anchor="middle" font-size="13" fill="#3ccf7f">✓ both authenticated</text>
+</svg>
