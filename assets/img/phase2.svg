@@ -32,11 +32,11 @@
   <text x="46" y="196" text-anchor="middle" font-size="15" font-weight="600" fill="#F0705C">participant</text>
 
   <!-- one ciphertext to the server -->
-  <path d="M74 134 H152" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
-  <text x="112" y="160" text-anchor="middle" font-size="13" fill="#9aa4b5">one ciphertext</text>
+  <path d="M74 134 H182" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <text x="128" y="124" text-anchor="middle" font-size="13" fill="#9aa4b5">one ciphertext</text>
 
   <!-- ===== server ===== -->
-  <g>
+  <g transform="translate(30 0)">
     <rect x="160" y="96" width="70" height="78" rx="12" fill="#1a2030" stroke="#34405a" stroke-width="2"/>
     <rect x="172" y="110" width="46" height="11" rx="3" fill="#2a3346"/>
     <rect x="172" y="129" width="46" height="11" rx="3" fill="#2a3346"/>
@@ -48,25 +48,25 @@
   </g>
 
   <!-- same ciphertext to both receivers -->
-  <path d="M236 118 L318 72" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
-  <path d="M236 152 L318 206" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <path d="M266 118 L328 72" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <path d="M266 152 L328 206" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
 
   <!-- ===== target (old key) ===== -->
-  <use href="#p2-person" x="330" y="40" width="36" height="40" fill="#e8ecf3"/>
-  <text x="348" y="100" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Target</text>
-  <g color="#F0705C"><use href="#p2-key" x="320" y="106" width="20" height="20"/></g>
-  <text x="344" y="121" font-size="13" font-weight="600" fill="#F0705C">old key</text>
-  <path d="M378 62 H452" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <use href="#p2-person" x="340" y="40" width="36" height="40" fill="#e8ecf3"/>
+  <text x="358" y="100" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Target</text>
+  <g color="#F0705C"><use href="#p2-key" x="330" y="106" width="20" height="20"/></g>
+  <text x="354" y="121" font-size="13" font-weight="600" fill="#F0705C">old key</text>
+  <path d="M388 62 H452" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
   <rect x="460" y="22" width="150" height="84" rx="10" fill="#0b0d12" stroke="#F0705C" stroke-width="2.5"/>
   <text x="535" y="72" text-anchor="middle" font-size="22" font-weight="800" fill="#F0705C">Video A</text>
   <use href="#p2-check" x="598" y="12" width="22" height="22"/>
 
   <!-- ===== others (new key) ===== -->
-  <use href="#p2-person" x="330" y="180" width="36" height="40" fill="#e8ecf3"/>
-  <text x="348" y="240" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Others</text>
-  <g color="#14A89A"><use href="#p2-key" x="318" y="246" width="20" height="20"/></g>
-  <text x="342" y="261" font-size="13" font-weight="600" fill="#14A89A">new key</text>
-  <path d="M378 202 H452" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
+  <use href="#p2-person" x="340" y="180" width="36" height="40" fill="#e8ecf3"/>
+  <text x="358" y="240" text-anchor="middle" font-size="15" font-weight="600" fill="#e8ecf3">Others</text>
+  <g color="#14A89A"><use href="#p2-key" x="328" y="246" width="20" height="20"/></g>
+  <text x="352" y="261" font-size="13" font-weight="600" fill="#14A89A">new key</text>
+  <path d="M388 202 H452" stroke="#9aa4b5" stroke-width="2.5" fill="none" marker-end="url(#p2-arrow)"/>
   <rect x="460" y="162" width="150" height="84" rx="10" fill="#0b0d12" stroke="#14A89A" stroke-width="2.5"/>
   <text x="535" y="212" text-anchor="middle" font-size="22" font-weight="800" fill="#14A89A">Video B</text>
   <use href="#p2-check" x="598" y="152" width="22" height="22"/>
