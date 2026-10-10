@@ -1,0 +1,17 @@
+# Not published until the IEEE S&P 2027 proceedings are out.
+# Remove the next line when the paper may be made public.
+paper.pdf
+
+# Original (uncompressed) video and working notes — not part of the site.
+/PoC.mp4
+CLAUDE_CODE_INSTRUCTIONS.md
+
+.DS_Store
+
+# Internal logo-selection page (not part of the site)
+logo-preview.html
+assets/img/logo-candidates/
+
+# Source PDFs of the phase figures (web versions are assets/img/phase*.svg)
+phase1.pdf
+phase2.pdf

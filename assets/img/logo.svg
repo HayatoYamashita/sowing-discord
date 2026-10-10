@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">Sowing Discord logo: one keyhole seed growing two different sprouts</title>
+  <!-- Keyhole Seed: one seed (= one ciphertext) grows two differently coloured sprouts (= two views) -->
+  <defs>
+    <mask id="sd-keyhole">
+      <rect width="64" height="64" fill="#fff"/>
+      <circle cx="32" cy="45" r="3.8" fill="#000"/>
+      <path d="M29.9 47h4.2l1 6.5h-6.2z" fill="#000"/>
+    </mask>
+  </defs>
+  <!-- stems -->
+  <path d="M32 36 C32 29 28 25 19 22" fill="none" stroke="#14A89A" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M32 36 C32 29 36 25 45 22" fill="none" stroke="#F0705C" stroke-width="4.5" stroke-linecap="round"/>
+  <!-- leaves -->
+  <path d="M20 22.5 C15 13 8 10 3 12 C5 20 12 25 20 22.5 Z" fill="#14A89A"/>
+  <path d="M44 22.5 C49 13 56 10 61 12 C59 20 52 25 44 22.5 Z" fill="#F0705C"/>
+  <!-- seed -->
+  <path d="M32 33 C44 33 51 41 51 48 C51 55 43 60 32 60 C21 60 13 55 13 48 C13 41 20 33 32 33 Z" fill="#2F6FD6" mask="url(#sd-keyhole)"/>
+</svg>
