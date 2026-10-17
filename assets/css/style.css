@@ -345,6 +345,7 @@ a:hover { color: #7aaaff; }
 .paper-title { font-size: 1.15rem; font-weight: 700; }
 .paper-authors { margin-top: .35rem !important; color: var(--fg); }
 .paper-venue { margin-top: .35rem !important; color: var(--fg-muted); }
+.paper-links { margin-top: 1rem !important; }
 .paper-pending {
   margin-top: 1rem !important;
   padding-top: 1rem;
