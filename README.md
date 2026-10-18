@@ -33,13 +33,13 @@ assets/video/         PoC.mp4 (web version) + PoC-poster.jpg
 
 ## Before the S&P publication
 
-`paper.pdf` is published (Paper button in the hero, PDF link in `#paper`). BibTeX and the DOI are
-**not** published yet; the BibTeX part of `#paper` is a placeholder.
+`paper.pdf`, BibTeX and the DOI are **not** published yet. The Paper / BibTeX buttons and
+the `#paper` section are placeholders. `paper.pdf` is listed in `.gitignore` so it is not pushed by accident.
 
 ## Common updates
 
 
-- **Update the paper**: overwrite `paper.pdf`.
+- **Publish the paper**: remove `paper.pdf` from `.gitignore`, enable the Paper button in the hero.
 - **Add BibTeX / DOI**: update `CITATION.bib` and the `<pre>` in `#paper` so both match.
 - **Add news**: add an item at the top of the `#news` section.
 - **Update vendor status**: edit the timeline / status list in `#ethics` (Disclosure timeline) and update "Last updated".

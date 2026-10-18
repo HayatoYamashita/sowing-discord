@@ -71,19 +71,23 @@
           another&nbsp;— and every client accepts it as cryptographically authenticated.
         </p>
 
+        <!-- Buttons. Paper / Artifact / BibTeX are placeholders until the S&P publication:
+             replace the <span class="btn is-disabled"> with <a class="btn" href="..."> when ready. -->
         <div class="hero-actions">
           <a class="btn btn-primary" href="#video">
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
             Watch the demo
           </a>
-          <a class="btn" href="paper.pdf">
+          <!-- TODO: paper link (paper.pdf) after the S&P publication -->
+          <span class="btn is-disabled" aria-disabled="true">
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 2h8l6 6v14H6zM13 3.5V9h5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-            Paper
-          </a>
-          <a class="btn" href="https://github.com/HayatoYamashita/sowing-discord-artifacts">
+            Paper <small>coming soon</small>
+          </span>
+          <!-- TODO: artifact link (https://doi.org/10.5281/zenodo.22764842) — confirm when it may be shown -->
+          <span class="btn is-disabled" aria-disabled="true">
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            PoC &amp; Artifact
-          </a>
+            PoC &amp; Artifact <small>coming soon</small>
+          </span>
           <a class="btn" href="#paper">
             <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 7h4v4H8c0 2 1 3 3 3v3c-4 0-6-2-6-6V7zm9 0h4v4h-3c0 2 1 3 3 3v3c-4 0-6-2-6-6V7z"/></svg>
             BibTeX
@@ -380,9 +384,8 @@
           <p class="paper-title">Sowing Discord: Exploiting the Lack of Key Commitment in E2EE Group RTC</p>
           <p class="paper-authors">Hayato Yamashita, Hayato Kimura, Atsushi Tanaka, Takanori Isobe</p>
           <p class="paper-venue"><em>To appear in: 2027 IEEE Symposium on Security and Privacy (S&amp;P 2027).</em></p>
-          <p class="paper-links"><a class="btn" href="paper.pdf"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M6 2h8l6 6v14H6zM13 3.5V9h5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg> PDF</a></p>
-          <!-- TODO: add the BibTeX (<pre> + copy button) after the S&P publication. -->
-          <p class="paper-pending">BibTeX will be available here after publication.</p>
+          <!-- TODO: enable the PDF link and add the BibTeX (<pre> + copy button) after the S&P publication. -->
+          <p class="paper-pending">The paper PDF and BibTeX will be available here after publication.</p>
         </div>
       </div>
     </section>
