@@ -346,12 +346,33 @@ a:hover { color: #7aaaff; }
 .paper-authors { margin-top: .35rem !important; color: var(--fg); }
 .paper-venue { margin-top: .35rem !important; color: var(--fg-muted); }
 .paper-links { margin-top: 1rem !important; }
-.paper-pending {
-  margin-top: 1rem !important;
+.bibtex {
+  margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px dashed var(--border);
+}
+.bibtex-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .5rem;
   color: var(--fg-muted);
   font-size: .92rem;
+  font-weight: 600;
+}
+.bibtex-copy { padding: .3rem .8rem; font-size: .85rem; }
+.bibtex pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-elev-2);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  line-height: 1.5;
 }
 
 @media (prefers-reduced-motion: reduce) {

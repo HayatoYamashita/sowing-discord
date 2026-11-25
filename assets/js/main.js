@@ -49,5 +49,16 @@
     });
   }
 
-  // TODO: add a BibTeX copy button together with the BibTeX in #paper (after the S&P publication)
+  // ---- BibTeX copy button ----
+  document.querySelectorAll('[data-copy-target]').forEach(function (btn) {
+    var label = btn.textContent;
+    btn.addEventListener('click', function () {
+      var target = document.getElementById(btn.getAttribute('data-copy-target'));
+      if (!target || !navigator.clipboard) return;
+      navigator.clipboard.writeText(target.textContent).then(function () {
+        btn.textContent = 'Copied!';
+        setTimeout(function () { btn.textContent = label; }, 1500);
+      });
+    });
+  });
 })();
